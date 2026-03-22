@@ -1,13 +1,17 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule } from '@angular/router';       // для router-outlet
+import { HeaderComponent } from './core/header/header.component';
+import { FooterComponent } from './core/footer/footer.component';
 
 @Component({
-  selector: 'app-root',
+  selector: 'shop-root',          // цей селектор має збігатися з index.html
   standalone: true,
-  imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css'],
+  imports: [
+    HeaderComponent,
+    FooterComponent,
+    RouterModule               // без цього router-outlet не працює
+  ]
 })
-export class AppComponent {
-  title = 'shop-app';
-}
+export class AppComponent {}
