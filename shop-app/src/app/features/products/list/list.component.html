@@ -1,0 +1,5 @@
+<div class="grid">
+    <ng-container *ngFor="let item of items; trackBy: item.id">
+      <shop-card [item]="item"></shop-card>
+    </ng-container>
+  </div>

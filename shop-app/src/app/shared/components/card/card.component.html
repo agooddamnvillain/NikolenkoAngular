@@ -1,0 +1,12 @@
+<div class="card">
+    <img [src]="item.imageUrl" alt="{{ item.title }}" />
+    <h3>{{ item.title }}</h3>
+    <p>{{ item.description }}</p>
+    <p>Price: {{ item.price | currency }}</p>
+    <p>Release: {{ item.releaseDate | date:'dd.MM.yyyy' }}</p>
+    <p>Category: {{ item.category }}</p>
+    <p>Status: {{ item.status }}</p>
+    <p>Tags: {{ item.tags.join(', ') }}</p>
+    <p>Colors: {{ item.colors.join(', ') }}</p>
+    <p>Specs: RAM {{ item.specs.ram }}GB, Storage {{ item.specs.storage }}GB, Color {{ item.specs.color }}</p>
+  </div>
