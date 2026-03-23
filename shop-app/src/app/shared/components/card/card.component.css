@@ -1,0 +1,48 @@
+.card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 12px;
+    background: white;
+    position: relative;
+  }
+  
+  /* 🔹 Динамічний стиль */
+  .expensive {
+    border: 2px solid gold;
+    box-shadow: 0 0 10px gold;
+  }
+  
+  /* 🔹 Статуси */
+  .badge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: white;
+    font-size: 12px;
+  }
+  
+  .green { background: green; }
+  .red { background: red; }
+  .yellow { background: orange; }
+  .gray { background: gray; }
+  
+  /* 🔹 Акція */
+  .discount {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: crimson;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+  }
+  
+  /* 🔹 Кнопка */
+  button {
+    margin-top: 10px;
+    padding: 6px 12px;
+    cursor: pointer;
+  }

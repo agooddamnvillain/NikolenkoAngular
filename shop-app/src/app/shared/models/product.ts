@@ -6,7 +6,8 @@ export enum Category {
   
   export enum Status {
     Available = 'Available',
-    OutOfStock = 'OutOfStock'
+    OutOfStock = 'OutOfStock',
+    PreOrder = 'PreOrder' // додали для @switch
   }
   
   export interface Specifications {
@@ -26,5 +27,13 @@ export enum Category {
     status: Status;
     tags: string[];
     colors: string[];
-    specs: Specifications; // вкладений об'єкт
+  
+    // 🔹 Safe Navigation (може бути відсутній)
+    specs?: Specifications;
+  
+    // 🔹 Для @if (акції)
+    isDiscount?: boolean;
+  
+    // 🔹 Для логіки кнопок
+    quantity: number;
   }

@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common'; // 👈 ДОДАТИ
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { CommonModule } from '@angular/common'; 
 import { Product } from '../../models/product';
 
 @Component({
@@ -7,8 +7,17 @@ import { Product } from '../../models/product';
   standalone: true,
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.css'],
-  imports: [CommonModule] // 👈 ОБОВ'ЯЗКОВО
+  imports: [CommonModule] 
 })
 export class CardComponent {
+
   @Input({ required: true }) item!: Product;
+
+  // 🔹 Output подія
+  @Output() action = new EventEmitter<number>();
+
+  // 🔹 метод для кнопки
+  onBtnClick(): void {
+    this.action.emit(this.item.id);
+  }
 }
