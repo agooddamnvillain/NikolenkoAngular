@@ -1,12 +1,14 @@
 import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common'; // 👈 ДОДАТИ
 import { Product } from '../../models/product';
 
 @Component({
   selector: 'shop-card',
   standalone: true,
   templateUrl: './card.component.html',
-  styleUrls: ['./card.component.css']
+  styleUrls: ['./card.component.css'],
+  imports: [CommonModule] // 👈 ОБОВ'ЯЗКОВО
 })
 export class CardComponent {
-  @Input({ required: true }) item!: Product;  // обов'язковий @Input
+  @Input({ required: true }) item!: Product;
 }
