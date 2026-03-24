@@ -1,5 +1,35 @@
-<div class="grid">
-    @for (item of items; track item.id) {
+<!-- 🔹 Фільтри -->
+<div class="filters">
+
+    <!-- Пошук -->
+    <input 
+      #searchInput
+      type="text" 
+      placeholder="Пошук..."
+      [(ngModel)]="searchQuery"
+      (ngModelChange)="filterItems()"
+    />
+  
+    <!-- Select по категорії -->
+    <select 
+      [(ngModel)]="selectedCategory"
+      (ngModelChange)="filterItems()"
+    >
+      @for (cat of categories; track cat) {
+        <option [value]="cat">{{ cat }}</option>
+      }
+    </select>
+  
+    <!-- Reset -->
+    <button (click)="resetFilters(searchInput)">
+      Очистити фільтри
+    </button>
+  
+  </div>
+  
+  <!-- 🔹 Список карток -->
+  <div class="grid">
+    @for (item of filteredProducts; track item.id) {
       <shop-card 
         [item]="item"
         (action)="handleCardAction($event)">
