@@ -1,54 +1,54 @@
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms'; // 👈 для ngModel
-import { PRODUCTS } from '../../../shared/mock-data';
+import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common'; // 👈 ДОДАТИ
+import { Observable } from 'rxjs';
+
 import { CardComponent } from '../../../shared/components/card/card.component';
-import { Category } from '../../../shared/models/product';
+import { ProductService } from '../../../shared/services/product.service';
+import { Product, Category } from '../../../shared/models/product';
 
 @Component({
   selector: 'shop-list',
   standalone: true,
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css'],
-  imports: [CardComponent, FormsModule] // 👈 додали FormsModule
+  imports: [
+    CardComponent,
+    FormsModule,
+    CommonModule // 👈 ОСЬ ЦЕ ГОЛОВНЕ
+  ]
 })
-export class ListComponent {
+export class ListComponent implements OnInit {
 
-  // 🔹 повний список (НЕ змінюємо)
-  public allProducts = PRODUCTS;
+  products$!: Observable<Product[]>;
 
-  // 🔹 відфільтрований список
-  public filteredProducts = [...this.allProducts];
+  searchQuery: string = '';
+  selectedCategory: string = 'All';
 
-  // 🔹 пошук
-  public searchQuery: string = '';
+  categories = ['All', ...Object.values(Category)];
 
-  // 🔹 вибрана категорія
-  public selectedCategory: string = 'All';
+  constructor(private productService: ProductService) {}
 
-  // 🔹 список категорій для select
-  public categories = ['All', ...Object.values(Category)];
-
-  // 🔹 подія від картки
-  handleCardAction(id: number): void {
-    console.log(`Користувач натиснув кнопку на товарі з ID: ${id}`);
+  ngOnInit(): void {
+    this.products$ = this.productService.items$;
+    this.productService.loadInitialData();
   }
 
-  // 🔹 фільтрація
-  filterItems(): void {
-    const query = this.searchQuery.toLowerCase();
-
-    this.filteredProducts = this.allProducts.filter(item =>
-      item.title.toLowerCase().includes(query) &&
-      (this.selectedCategory === 'All' || item.category === this.selectedCategory)
-    );
+  onFilterChange(): void {
+    this.productService.filterItems({
+      query: this.searchQuery,
+      category: this.selectedCategory
+    });
   }
 
-  // 🔹 reset фільтрів + фокус
   resetFilters(input: HTMLInputElement): void {
     this.searchQuery = '';
     this.selectedCategory = 'All';
-    this.filteredProducts = [...this.allProducts];
-
+    this.onFilterChange();
     input.focus();
+  }
+
+  handleCardAction(id: number): void {
+    this.productService.deleteItem(id);
   }
 }

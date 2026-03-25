@@ -7,13 +7,13 @@
       type="text" 
       placeholder="Пошук..."
       [(ngModel)]="searchQuery"
-      (ngModelChange)="filterItems()"
+      (ngModelChange)="onFilterChange()"
     />
   
     <!-- Select по категорії -->
     <select 
       [(ngModel)]="selectedCategory"
-      (ngModelChange)="filterItems()"
+      (ngModelChange)="onFilterChange()"
     >
       @for (cat of categories; track cat) {
         <option [value]="cat">{{ cat }}</option>
@@ -27,12 +27,23 @@
   
   </div>
   
-  <!-- 🔹 Список карток -->
-  <div class="grid">
-    @for (item of filteredProducts; track item.id) {
-      <shop-card 
-        [item]="item"
-        (action)="handleCardAction($event)">
-      </shop-card>
-    }
-  </div>
+  <!-- 🔹 AsyncPipe + Loading -->
+  @if (products$ | async; as products) {
+  
+    <div class="grid">
+      @for (item of products; track item.id) {
+        <shop-card 
+          [item]="item"
+          (action)="handleCardAction($event)">
+        </shop-card>
+      }
+    </div>
+  
+  } @else {
+  
+    <!-- Loader під час delay(1000) -->
+    <div class="loading">
+      <p>Loading...</p>
+    </div>
+  
+  }
