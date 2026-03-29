@@ -7,12 +7,12 @@ export enum Category {
   export enum Status {
     Available = 'Available',
     OutOfStock = 'OutOfStock',
-    PreOrder = 'PreOrder' // додали для @switch
+    PreOrder = 'PreOrder'
   }
   
   export interface Specifications {
-    ram: number;        // GB
-    storage: number;    // GB
+    ram: number;
+    storage: number;
     color: string;
   }
   
@@ -22,18 +22,21 @@ export enum Category {
     description: string;
     imageUrl: string;
     price: number;
-    releaseDate: Date;
+  
+    // 🔥 ВАЖЛИВО: string, НЕ Date
+    releaseDate: string;
+  
     category: Category;
     status: Status;
     tags: string[];
     colors: string[];
   
-    // 🔹 Safe Navigation (може бути відсутній)
+    // 🔹 Safe Navigation
     specs?: Specifications;
   
-    // 🔹 Для @if (акції)
+    // 🔹 @if
     isDiscount?: boolean;
   
-    // 🔹 Для логіки кнопок
+    // 🔹 кнопка
     quantity: number;
   }

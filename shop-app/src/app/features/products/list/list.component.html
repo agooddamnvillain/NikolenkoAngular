@@ -1,8 +1,8 @@
 <div class="grid">
-    @for (item of items; track item.id) {
-      <shop-card 
-        [item]="item"
-        (action)="handleCardAction($event)">
-      </shop-card>
-    }
-  </div>
+  @for (item of items; track item.id) {
+    <shop-card
+      [item]="item"
+      (action)="handleCardAction($event)">
+    </shop-card>
+  }
+</div>

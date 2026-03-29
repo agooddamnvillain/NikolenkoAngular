@@ -10,9 +10,9 @@ import { CardComponent } from '../../../shared/components/card/card.component';
   imports: [CardComponent]
 })
 export class ListComponent {
-  public items = PRODUCTS;
 
-  // 🔹 обробка події від дочірнього компонента
+  items = PRODUCTS;
+
   handleCardAction(id: number): void {
     console.log(`Користувач натиснув кнопку на товарі з ID: ${id}`);
   }

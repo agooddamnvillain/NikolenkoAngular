@@ -7,7 +7,7 @@ export const PRODUCTS: Product[] = [
     description: 'High performance laptop from Apple',
     imageUrl: 'https://via.placeholder.com/150',
     price: 2500,
-    releaseDate: new Date('2022-10-01'),
+    releaseDate: '2022-10-01',
     category: Category.Laptop,
     status: Status.Available,
     tags: ['Apple', 'Laptop', 'Pro'],
@@ -22,7 +22,7 @@ export const PRODUCTS: Product[] = [
     description: 'Latest Apple smartphone',
     imageUrl: 'https://via.placeholder.com/150',
     price: 999,
-    releaseDate: new Date('2023-01-15'),
+    releaseDate: '2023-01-15',
     category: Category.Phone,
     status: Status.PreOrder,
     tags: ['Apple', 'Phone', 'iOS'],
@@ -37,12 +37,15 @@ export const PRODUCTS: Product[] = [
     description: 'High-end Android tablet',
     imageUrl: 'https://via.placeholder.com/150',
     price: 850,
-    releaseDate: new Date('2023-03-10'),
+    releaseDate: '2023-03-10',
     category: Category.Tablet,
     status: Status.OutOfStock,
     tags: ['Samsung', 'Tablet', 'Android'],
     colors: ['Gray', 'Silver'],
-    specs: undefined, // 🔥 для Safe Navigation
+
+    // 🔥 Safe Navigation — просто прибираємо поле
+    // specs: undefined,
+
     isDiscount: true,
     quantity: 0
   },
@@ -52,7 +55,7 @@ export const PRODUCTS: Product[] = [
     description: 'Compact and powerful ultrabook',
     imageUrl: 'https://via.placeholder.com/150',
     price: 1400,
-    releaseDate: new Date('2023-06-20'),
+    releaseDate: '2023-06-20',
     category: Category.Laptop,
     status: Status.Available,
     tags: ['Dell', 'Laptop'],
@@ -67,7 +70,7 @@ export const PRODUCTS: Product[] = [
     description: 'Flagship Android smartphone',
     imageUrl: 'https://via.placeholder.com/150',
     price: 1100,
-    releaseDate: new Date('2024-02-01'),
+    releaseDate: '2024-02-01',
     category: Category.Phone,
     status: Status.Available,
     tags: ['Samsung', 'Phone'],
