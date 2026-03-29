@@ -1,51 +1,8 @@
-<div 
-  class="card"
-  [class.expensive]="item.price > 1000"
-  [highlightColor]="'#f9f6f1'"
->
-
-  @switch (item.status) {
-    @case ('Available') {
-      <span class="badge green">Available</span>
-    }
-    @case ('OutOfStock') {
-      <span class="badge red">Out of stock</span>
-    }
-    @case ('PreOrder') {
-      <span class="badge yellow">Pre-order</span>
-    }
-    @default {
-      <span class="badge gray">Unknown</span>
-    }
-  }
-
-  @if (item.isDiscount) {
-    <span class="discount">🔥 Sale</span>
-  }
-
-  <img [src]="item.imageUrl" alt="{{ item.title }}" />
-
-  <h3>{{ item.title }}</h3>
-  <p>{{ item.description }}</p>
-
-  <p><strong>Price:</strong> {{ item.price | currency }}</p>
-  <p><strong>Release:</strong> {{ item.releaseDate | date:'dd.MM.yyyy' }}</p>
-  <p><strong>Category:</strong> {{ item.category }}</p>
-
-  <p><strong>Tags:</strong> {{ item.tags.join(', ') }}</p>
-  <p><strong>Colors:</strong> {{ item.colors.join(', ') }}</p>
-
-  <p>
-    <strong>Specs:</strong>
-    RAM {{ item.specs?.ram }}GB,
-    Storage {{ item.specs?.storage }}GB,
-    Color {{ item.specs?.color }}
-  </p>
-
-  @if (item.quantity > 0) {
-    <button (click)="onBtnClick()">Add to cart</button>
-  } @else {
-    <button disabled>Out of stock</button>
-  }
-
-</div>
+<div class="card">
+    <img [src]="item.imageUrl" alt="{{ item.title }}" />
+    <h3>{{ item.title }}</h3>
+    <p>{{ item.price | currency }}</p>
+    <a [routerLink]="['/product', item.id]">
+      <button>Детальніше</button>
+    </a>
+  </div>

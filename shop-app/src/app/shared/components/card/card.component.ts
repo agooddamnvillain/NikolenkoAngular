@@ -13,8 +13,13 @@ import { ConfigurableHighlightDirective } from '../../directives/configurable-hi
 export class CardComponent {
 
   @Input({ required: true }) item!: Product;
-
   @Output() action = new EventEmitter<number>();
+
+  expanded = false; // стан відкриття детальної інформації
+
+  toggle(): void {
+    this.expanded = !this.expanded;
+  }
 
   onBtnClick(): void {
     this.action.emit(this.item.id);

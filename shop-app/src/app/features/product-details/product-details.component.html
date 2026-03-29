@@ -1,0 +1,29 @@
+<a routerLink="/">← Назад</a>
+
+@ngIf (product$ | async as product; else loading)
+  <div class="product-details">
+    <img [src]="product.imageUrl" alt="{{ product.title }}" />
+    <h2>{{ product.title }}</h2>
+    <p><strong>Price:</strong> {{ product.price | currency }}</p>
+    <p><strong>Release:</strong> {{ product.releaseDate | date:'dd.MM.yyyy' }}</p>
+    <p>
+      <strong>Category:</strong>
+      <span [ngClass]="product.category.toLowerCase()">{{ product.category }}</span>
+    </p>
+    <p><strong>Tags:</strong></p>
+    <ul>
+      @for (tag of product.tags; track tag)
+        <li>{{ tag }}</li>
+      @end
+    </ul>
+    <p><strong>Specs:</strong></p>
+    <ul>
+      <li>RAM: {{ product.specs.ram }}GB</li>
+      <li>Storage: {{ product.specs.storage }}GB</li>
+      <li>Color: {{ product.specs.color }}</li>
+    </ul>
+  </div>
+
+<ng-template #loading>
+  <p>Loading product details...</p>
+</ng-template>
